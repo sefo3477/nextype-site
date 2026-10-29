@@ -1,0 +1,68 @@
+/* Подобрения върху v5: бранд шрифт Exo 2 навсякъде, ясни тегла и по-плътен ритъм.
+   Цветовете и шрифтовете на сайта се сменят тук (v5.css държи оформлението). */
+:root {
+  --sans: "Exo 2", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --logo: "Exo 2", system-ui, sans-serif;
+  --w-text: 400;   /* Regular – текст */
+  --w-mid: 500;    /* Medium – акценти, етикети, бутони */
+  --w-head: 700;   /* Bold – заглавия */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+body { font-family: var(--sans); font-weight: var(--w-text); }
+
+/* Заглавия: Exo 2 Bold, плътни и стегнати */
+.hero h1, .system-copy h2, .cases h2, .services-heading h2, .proc h2, .faq h2, .cta h2,
+.premium-projects .project h3 { font-weight: var(--w-head); letter-spacing: -0.035em; }
+.hero h1 { line-height: 1.02; }
+.hero h1 em, .cta h2 em, .system-copy h2 em, .services-heading h2 em { font-weight: var(--w-head); }
+.premium-projects .project h4, .service-description h3, .steps h3, summary { font-weight: var(--w-mid); }
+.btn, .menu a, .service-tab, .project-tags, .eyebrow { font-weight: var(--w-mid); }
+
+/* Еднакъв ритъм между секциите */
+.cases, .premium-services, .proc { padding-block: clamp(80px, 10vw, 130px); }
+.tf { padding-block: clamp(60px, 8vw, 110px); }
+
+/* Бутоните отговарят на натискане */
+.btn { transition: transform 160ms var(--ease-out), background-color 200ms ease; }
+.btn:active { transform: scale(0.97); }
+@media (hover: hover) and (pointer: fine) { .btn:hover { transform: translateY(-2px); } }
+
+/* Формата: видими грешки и състояние */
+.form [aria-invalid="true"] { outline: 2px solid #ff8fa3; outline-offset: -2px; }
+.ok.err { color: #ff9aa8; }
+.form button[disabled] { opacity: .6; cursor: progress; }
+
+/* Влизане на картите, стъпките и въпросите – по едно, с малко закъснение */
+.js .rv.pre { transition-delay: calc(var(--i, 0) * 70ms); }
+
+@media (prefers-reduced-motion: reduce) {
+  .btn:active, .btn:hover { transform: none; }
+}
+
+/* По-четим текст: нищо под 12px, основният текст 16–18px */
+.hero .lead { font-size: 19px; }
+.system-copy > p:not(.eyebrow) { font-size: 18px; max-width: 420px; }
+.premium-projects .project p, .service-description > p, .steps p, details p { font-size: 16px; }
+.section-note, .services-heading > p { font-size: 16px; }
+summary { font-size: 20px; }
+.eyebrow, .clients .eyebrow { font-size: 12px; }
+.system-node small, .art-top, .art-bottom, .service-description .eyebrow { font-size: 11px; }
+.project-tags, .premium-projects .project-tags, .service-description li, .project-top { font-size: 13px; }
+.fgrid, .copy { font-size: 15px; }
+.form label { font-size: 14px; }
+
+/* Заглавията в две реда: по-широки колони */
+@media (min-width: 761px) { .system-layout { grid-template-columns: 1.1fr 1fr; } }
+.system-copy h2 { font-size: clamp(32px, 3.3vw, 48px); }
+@media (min-width: 861px) { .proc .w { grid-template-columns: 1fr 1.1fr; align-items: start; } }
+.proc h2 { font-size: clamp(34px, 3.4vw, 50px); }
+.services-heading h2 { font-size: clamp(32px, 3.6vw, 52px); }
+
+@media (max-width: 600px) {
+  .hero h1 { font-size: 34px; }
+  .system-copy h2, .card-w h2 { font-size: 30px; }
+  .services-heading h2 { font-size: 24px; }
+  .cta h2 { font-size: 34px; }
+  .proc h2 { font-size: 30px; }
+}
